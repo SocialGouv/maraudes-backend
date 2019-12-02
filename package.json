@@ -17,6 +17,9 @@
   "devDependencies": {
     "husky": "^3.0.0"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint",
