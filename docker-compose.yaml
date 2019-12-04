@@ -13,7 +13,7 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
-      - hnk-pgdata:/var/lib/postgresql/data
+      - maraudes-pgdata:/var/lib/postgresql/data
       - ./scripts:/docker-entrypoint-initdb.d
 
   graphql-engine:
@@ -27,5 +27,13 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: $HASURA_SECRET
       HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS256","jwk_url": "$DOCKER_HOST_URL:$API_PORT/jwk"}'
 
+  redis:
+    image: redis:4.0.14-alpine
+    restart: always
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - maraudes-redis:/data
+
 volumes:
-  hnk-pgdata:
+  maraudes-pgdata:
+  maraudes-redis:
