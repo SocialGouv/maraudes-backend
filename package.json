@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "hasura-node-knex",
+  "name": "maraudes-backend",
   "version": "1.0.0",
   "workspaces": [
     "packages/*"
   ],
-  "description": "hasura nodejs server with knex migration, objection, postgresql and passport jwt handling hasura roles",
+  "description": "Backend",
   "main": "index.js",
   "scripts": {
     "dev": "lerna run dev --parallel",
@@ -13,7 +13,7 @@
     "install": "node node_modules/husky/lib/installer/bin install"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "husky": "^3.0.0"
   },

@@ -1,4 +1,5 @@
 # hasura boilerplate app
+
 hasura boilerplate app with koa knex objection passport jwt
 
 ```
@@ -13,7 +14,7 @@ yarn
 
 # Create your own .env file with given .env.sample
 
-# you sample keys or generate the RSA keys
+# generate the RSA keys
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout > public.pem
 
@@ -29,3 +30,5 @@ yarn workspace @hnk/api db:migrate:latest
 yarn dev
 
 ```
+
+Now point your browser to http://127.0.0.1:8080 to access the Hasura UI.
