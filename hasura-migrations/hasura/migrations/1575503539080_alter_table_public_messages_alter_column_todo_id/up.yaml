@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE "public"."messages" ALTER COLUMN "todo_id" DROP NOT NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."messages"."todo_id" IS E''
+  type: run_sql

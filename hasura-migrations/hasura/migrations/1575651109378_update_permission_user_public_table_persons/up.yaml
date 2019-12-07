@@ -1,0 +1,28 @@
+- args:
+    role: user
+    table:
+      name: persons
+      schema: public
+  type: drop_insert_permission
+- args:
+    permission:
+      check: {}
+      columns:
+      - id
+      - title
+      - created_at
+      - created_by
+      - text
+      - updated_at
+      localPresets:
+      - key: created_by
+        value: x-hasura-User-Id
+      - key: ""
+        value: ""
+      set:
+        created_by: x-hasura-User-Id
+    role: user
+    table:
+      name: persons
+      schema: public
+  type: create_insert_permission

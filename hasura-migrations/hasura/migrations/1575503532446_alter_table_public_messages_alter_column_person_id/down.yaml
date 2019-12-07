@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE "public"."messages" ALTER COLUMN "person_id" SET NOT NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."messages"."person_id" IS E'null'
+  type: run_sql

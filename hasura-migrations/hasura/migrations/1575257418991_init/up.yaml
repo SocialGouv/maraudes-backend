@@ -1,0 +1,209 @@
+- args:
+    allowlist: []
+    functions: []
+    query_collections: []
+    remote_schemas: []
+    tables:
+    - array_relationships: []
+      computed_fields: []
+      configuration:
+        custom_column_names: {}
+        custom_root_fields:
+          delete: null
+          insert: null
+          select: null
+          select_aggregate: null
+          select_by_pk: null
+          update: null
+      delete_permissions: []
+      event_triggers: []
+      insert_permissions:
+      - comment: null
+        permission:
+          check: {}
+          columns:
+          - text
+          - created_at
+          - created_by
+          - id
+          - person_id
+          - todo_id
+          set:
+            created_by: x-hasura-User-Id
+        role: user
+      is_enum: false
+      object_relationships:
+      - comment: null
+        name: created_user
+        using:
+          foreign_key_constraint_on: created_by
+      - comment: null
+        name: person
+        using:
+          foreign_key_constraint_on: person_id
+      - comment: null
+        name: todo
+        using:
+          foreign_key_constraint_on: todo_id
+      select_permissions:
+      - comment: null
+        permission:
+          allow_aggregations: false
+          columns:
+          - text
+          - created_at
+          - created_by
+          - id
+          - person_id
+          - todo_id
+          computed_fields: []
+          filter: {}
+        role: user
+      table: messages
+      update_permissions: []
+    - array_relationships:
+      - comment: null
+        name: messages
+        using:
+          foreign_key_constraint_on:
+            column: person_id
+            table: messages
+      - comment: null
+        name: todos
+        using:
+          foreign_key_constraint_on:
+            column: person_id
+            table: todos
+      computed_fields: []
+      configuration:
+        custom_column_names: {}
+        custom_root_fields:
+          delete: null
+          insert: null
+          select: null
+          select_aggregate: null
+          select_by_pk: null
+          update: null
+      delete_permissions: []
+      event_triggers: []
+      insert_permissions: []
+      is_enum: false
+      object_relationships:
+      - comment: null
+        name: created_user
+        using:
+          foreign_key_constraint_on: created_by
+      select_permissions: []
+      table: persons
+      update_permissions: []
+    - array_relationships:
+      - comment: null
+        name: messages
+        using:
+          foreign_key_constraint_on:
+            column: todo_id
+            table: messages
+      computed_fields: []
+      configuration:
+        custom_column_names: {}
+        custom_root_fields:
+          delete: null
+          insert: null
+          select: null
+          select_aggregate: null
+          select_by_pk: null
+          update: null
+      delete_permissions:
+      - comment: null
+        permission:
+          filter:
+            _and:
+            - created_by:
+                _eq: X-Hasura-User-Id
+        role: user
+      event_triggers: []
+      insert_permissions:
+      - comment: null
+        permission:
+          check: {}
+          columns:
+          - text
+          - title
+          - completed_at
+          - created_at
+          - updated_at
+          - completed_by
+          - created_by
+          - id
+          set:
+            created_by: x-hasura-User-Id
+        role: user
+      is_enum: false
+      object_relationships:
+      - comment: null
+        name: completed_user
+        using:
+          foreign_key_constraint_on: completed_by
+      - comment: null
+        name: created_user
+        using:
+          foreign_key_constraint_on: created_by
+      - comment: null
+        name: person
+        using:
+          foreign_key_constraint_on: person_id
+      select_permissions:
+      - comment: null
+        permission:
+          allow_aggregations: false
+          columns:
+          - text
+          - title
+          - completed_at
+          - created_at
+          - updated_at
+          - completed_by
+          - created_by
+          - id
+          computed_fields: []
+          filter: {}
+        role: user
+      table: todos
+      update_permissions:
+      - comment: null
+        permission:
+          columns:
+          - text
+          - title
+          - completed_at
+          - created_at
+          - updated_at
+          - completed_by
+          - created_by
+          - id
+          filter:
+            _and:
+            - created_by:
+                _eq: X-Hasura-User-Id
+          set: {}
+        role: user
+    - array_relationships: []
+      computed_fields: []
+      configuration:
+        custom_column_names: {}
+        custom_root_fields:
+          delete: null
+          insert: null
+          select: null
+          select_aggregate: null
+          select_by_pk: null
+          update: null
+      delete_permissions: []
+      event_triggers: []
+      insert_permissions: []
+      is_enum: false
+      object_relationships: []
+      select_permissions: []
+      table: user
+      update_permissions: []
+  type: replace_metadata

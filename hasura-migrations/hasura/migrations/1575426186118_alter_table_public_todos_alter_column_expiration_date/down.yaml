@@ -1,0 +1,10 @@
+- args:
+    sql: ALTER TABLE "public"."todos" ALTER COLUMN "expiration_date" TYPE timestamp
+      with time zone;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."todos"."expiration_date" IS E'null'
+  type: run_sql
+- args:
+    sql: alter table "public"."todos" rename column "expiration_at" to "expiration_date";
+  type: run_sql

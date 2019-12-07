@@ -1,0 +1,17 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - id
+      - title
+      - created_at
+      - created_by
+      - text
+      - updated_at
+      filter: {}
+      limit: null
+    role: user
+    table:
+      name: persons
+      schema: public
+  type: create_select_permission

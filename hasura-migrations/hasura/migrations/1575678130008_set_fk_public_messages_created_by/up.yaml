@@ -1,0 +1,6 @@
+- args:
+    sql: "\n             alter table \"public\".\"messages\" drop constraint \"messages_created_by_fkey\",\n
+      \            add constraint \"messages_created_by_fkey\"\n             foreign
+      key (\"created_by\")\n             references \"public\".\"user\"\n             (\"id\")
+      on update restrict on delete cascade;\n      "
+  type: run_sql
