@@ -92,3 +92,5 @@ typings/
 
 # keys
 *.pem
+
+docker-compose.override.yaml
