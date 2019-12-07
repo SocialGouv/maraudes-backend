@@ -12,7 +12,7 @@ const router = new Router();
 
 /**
  * GET /jwk
- * Sends the JWT key set
+ * Sends the JWT key set to hasura
  */
 router.get("/jwk", async ctx => {
   const jwk = {

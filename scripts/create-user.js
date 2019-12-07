@@ -10,10 +10,25 @@ const signUp = (username, password) =>
       username,
       password
     })
-  });
+  }).then(r => r.json());
 
-console.log("process.argv[2]", process.argv[2]);
+const login = (username, password) =>
+  fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username,
+      password
+    })
+  }).then(r => r.json());
+
+const userName = process.argv[2];
+
 signUp(process.argv[2], "test")
-  .then(res => res.text())
-  .then(console.log)
+  .then(res => {
+    console.log("created", userName);
+    return login(userName, "test")
+      .then(console.log)
+      .catch(console.log);
+  })
   .catch(console.log);

@@ -2,6 +2,7 @@ import Koa from "koa";
 import RedisStore from "koa-redis";
 import bodyParser from "koa-bodyparser";
 import session from "koa-session";
+import cors from "@koa/cors";
 import pino from "pino";
 
 import passport from "./config/passport";
@@ -11,6 +12,8 @@ const logger = pino();
 const store = new RedisStore();
 const app = new Koa();
 const PORT = process.env.PORT || 1337;
+
+app.use(cors());
 
 // sessions
 app.keys = ["super-secret-key"];
@@ -29,5 +32,5 @@ app.use(authRoutes.routes());
 // server
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  logger.info(`Server listening on port: ${PORT}`);
+  logger.info(`Server listening on http://127.0.0.1:${PORT}`);
 });

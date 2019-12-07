@@ -25,31 +25,33 @@ passport.use(
       passwordField: "password"
     },
     (username, password, done) => {
-      User.query()
-        .where("username", username)
-        .first()
-        .eager("roles")
-        // eslint-disable-next-line consistent-return
-        .then(user => {
-          if (!user) {
-            return done("Unknown user");
-          }
-          if (!user.active) {
-            return done("User is inactive");
-          }
-          user.verifyPassword(password, (err, passwordCorrect) => {
-            if (err) {
-              return done(err);
+      return (
+        User.query()
+          .where("username", username)
+          .first()
+          .eager("roles")
+          // eslint-disable-next-line consistent-return
+          .then(user => {
+            if (!user) {
+              return done("Unknown user");
             }
-            if (!passwordCorrect) {
-              return done("Invalid password");
+            if (!user.active) {
+              return done("User is inactive");
             }
-            return done(null, user);
-          });
-        })
-        .catch(err => {
-          done(err);
-        });
+            user.verifyPassword(password, (err, passwordCorrect) => {
+              if (err) {
+                return done(err);
+              }
+              if (!passwordCorrect) {
+                return done("Invalid password");
+              }
+              return done(null, user);
+            });
+          })
+          .catch(err => {
+            done(err);
+          })
+      );
     }
   )
 );

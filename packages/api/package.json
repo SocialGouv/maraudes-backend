@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@koa/cors": "2",
     "babel-eslint": "^10.0.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.0.0",

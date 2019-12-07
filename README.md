@@ -32,3 +32,35 @@ yarn dev
 ```
 
 Now point your browser to http://127.0.0.1:8080 to access the Hasura UI.
+
+## Usage
+
+### SignUp
+
+```js
+fetch(`${API_URL}/signup`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username,
+    password
+  })
+})
+  .then(r => r.json())
+  .catch(console.log);
+```
+
+### Login
+
+```js
+fetch(`${API_URL}/login`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username,
+    password
+  })
+})
+  .then(r => r.json())
+  .catch(console.log);
+```
