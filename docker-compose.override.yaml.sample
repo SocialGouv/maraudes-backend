@@ -6,7 +6,13 @@ services:
       - "5434:5432"
   graphql-engine:
     ports:
-      - 8080:8080
+      - "8080:8080"
   redis:
     ports:
       - "6379:6379"
+  api:
+    build:
+      context: ./packages/api
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
