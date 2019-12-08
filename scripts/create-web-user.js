@@ -1,6 +1,8 @@
 const fetch = require("node-fetch");
 
-const API_URL = process.env.API_URL || "http://127.0.0.1:1337";
+require("dotenv").config({ path: `${__dirname}/../.env` });
+
+const API_URL = process.env.API_URL;
 
 const signUp = (username, password) =>
   fetch(`${API_URL}/signup`, {
@@ -24,11 +26,15 @@ const login = (username, password) =>
 
 const userName = process.argv[2];
 
-signUp(process.argv[2], "test")
-  .then(res => {
-    console.log("created", userName);
-    return login(userName, "test")
-      .then(console.log)
-      .catch(console.log);
-  })
-  .catch(console.log);
+if (process.argv.length < 4) {
+  console.log("USAGE: node scripts/create-user USERNAME PASSWORD");
+} else {
+  signUp(process.argv[2], process.argv[3])
+    .then(res => {
+      console.log("created", userName);
+      return login(userName, process.argv[3])
+        .then(console.log)
+        .catch(console.log);
+    })
+    .catch(console.log);
+}

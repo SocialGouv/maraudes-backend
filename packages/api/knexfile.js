@@ -1,14 +1,18 @@
+// hack for azure+knex+ssl connection strings - https://github.com/knex/knex/issues/852
+//
+// const pg = require("pg");
+// pg.defaults.ssl = true;
+//
+
 const { join } = require("path");
 require("dotenv").config({ path: `${__dirname}/../../.env` });
 
-const databaseName = process.env.POSTGRES_DB;
-
 const connectionUrl = process.env.DATABASE_URL || {
-  host: "localhost",
+  host: process.env.POSTGRES_HOST,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
-  port: "5439",
-  database: databaseName
+  port: process.env.POSTGRES_PORT,
+  database: process.env.POSTGRES_DB
 };
 
 const connection = {
