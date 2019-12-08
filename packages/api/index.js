@@ -8,8 +8,11 @@ import pino from "pino";
 import passport from "./config/passport";
 import authRoutes from "./routes/auth";
 
+const REDIS_HOST = process.env.REDIS_HOST || "127.0.0.1";
+const REDIS_PORT = process.env.REDIS_PORT || "6379";
+
 const logger = pino();
-const store = new RedisStore(process.env.REDIS_URL);
+const store = new RedisStore({ host: REDIS_HOST, port: REDIS_PORT });
 const app = new Koa();
 const PORT = process.env.PORT || 1337;
 
