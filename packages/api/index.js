@@ -9,7 +9,7 @@ import passport from "./config/passport";
 import authRoutes from "./routes/auth";
 
 const logger = pino();
-const store = new RedisStore();
+const store = new RedisStore(process.env.REDIS_URL);
 const app = new Koa();
 const PORT = process.env.PORT || 1337;
 
