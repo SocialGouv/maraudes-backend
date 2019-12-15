@@ -1,41 +1,41 @@
-# hasura boilerplate app
+# maraudes-backend
 
-hasura boilerplate app with koa knex objection passport jwt
+Postgres + Hasura + JWT auth API
 
-```
+Clone the repo and add `docker-compose.override.yml` and `.env` from the sample files.
+
+## Setup
+
+```sh
 # Clone the repo
-git clone https://github.com/kwiss/hasura-node-starter
+git clone https://github.com/@socialgouv/maraudes-backend
 
 # Change directory
-cd hasura-node-starter
-
-# Install NPM dependencies
-yarn
-
-# Create your own .env file with given .env.sample
+cd maraudes-backend
 
 # generate the RSA keys
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout > public.pem
 
-# start docker with postgres and hasura
-
+# start the stack
 docker-compose up
 
-# Apply migrations
-# (Note) this step creates tables "users", "roles" and "user_roles" in the database
-yarn workspace @hnk/api db:migrate:latest
-
-# Then simply start your app
-yarn dev
-
+# Apply hasura migrations
+hasura migrate apply --admin-secret=xxxx
 ```
 
-Now point your browser to http://127.0.0.1:8080 to access the Hasura UI.
+### Dev
 
-## Usage
+```sh
+# install dependencies
+yarn
+# start API locally
+yarn dev
+```
 
-### SignUp
+## Auth
+
+#### Sign-up
 
 ```js
 fetch(`${API_URL}/signup`, {
@@ -50,7 +50,7 @@ fetch(`${API_URL}/signup`, {
   .catch(console.log);
 ```
 
-### Login
+#### Login
 
 ```js
 fetch(`${API_URL}/login`, {
@@ -64,3 +64,8 @@ fetch(`${API_URL}/login`, {
   .then(r => r.json())
   .catch(console.log);
 ```
+
+## see also
+
+- [maraudes-app](https://github.com/socialgouv/maraudes-app)
+- [original hasura-boilerplate](https://github.com/kwiss/hasura-boilerplate)
