@@ -80,4 +80,9 @@ router.post("/signup", async ctx => {
   return ctx;
 });
 
+router.get("/", async ctx => {
+  ctx.set("Content-Type", "application/json");
+  ctx.response.body = `${JSON.stringify({ hello: "world" }, null, 2)}`;
+});
+
 export default router;
